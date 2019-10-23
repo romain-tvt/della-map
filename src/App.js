@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import { Container } from "@material-ui/core";
+
+import useFetchData from "./hook/useFetchData";
+
+import Header from "./components/Header";
+import GeoMap from "./components/GeoMap";
+import DataTable from "./components/DataTable";
+
+import LOL from './components/LOL';
 
 function App() {
+  const [data] = useFetchData();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Header />
+        {data.length > 0 && (
+          <>
+            <GeoMap data={data} />
+            <DataTable data={data} />
+          </>
+        )}
+      </Container>
     </div>
   );
 }
