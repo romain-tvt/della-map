@@ -8,8 +8,6 @@ import Header from "./components/Header";
 import GeoMap from "./components/GeoMap";
 import DataTable from "./components/DataTable";
 
-import LOL from './components/LOL';
-
 function App() {
   const [data] = useFetchData();
 
