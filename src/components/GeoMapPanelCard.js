@@ -4,25 +4,11 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   card: {
     minWidth: 275
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  },
-  link: {
-    margin: theme.spacing(1)
   }
-}));
+});
 
 export default function GeoMapPanel({ company }) {
   const classes = useStyles();
@@ -32,14 +18,14 @@ export default function GeoMapPanel({ company }) {
       {company && company.domaine && (
         <Card className={classes.card}>
           <CardContent>
+            <Typography variant="h5" component="h2">
+              {company.domaine}
+            </Typography>
             <Typography
               className={classes.title}
               color="textSecondary"
               gutterBottom
             >
-              {company.domaine}
-            </Typography>
-            <Typography variant="h5" component="h2">
               {company.vignoble}
             </Typography>
           </CardContent>
