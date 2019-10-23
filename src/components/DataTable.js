@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 
-export default function LOL({ data }) {
+export default function DataTable({ data, onSelectionChange }) {
   return (
     <div style={{ maxWidth: "100%" }}>
       <MaterialTable
@@ -40,6 +40,10 @@ export default function LOL({ data }) {
             }
           }
         ]}
+        options={{
+          selection: true
+        }}
+        onSelectionChange={onSelectionChange}
         data={data}
         title="Liste des vignobles"
       />

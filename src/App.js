@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container } from "@material-ui/core";
 
@@ -10,6 +10,11 @@ import DataTable from "./components/DataTable";
 
 function App() {
   const [data] = useFetchData();
+  const [companies, setCompanies] = useState(undefined);
+
+  const onSelectionChange = rows => {
+    setCompanies(rows.length > 0 ? rows : data);
+  };
 
   return (
     <div className="App">
@@ -17,8 +22,8 @@ function App() {
         <Header />
         {data.length > 0 && (
           <>
-            <GeoMap data={data} />
-            <DataTable data={data} />
+            <GeoMap data={companies || data} />
+            <DataTable data={data} onSelectionChange={onSelectionChange} />
           </>
         )}
       </Container>
