@@ -4,20 +4,19 @@ import { geocodingURL } from "../config";
 
 export const csvJSON = (csv = "") => {
   const lines = csv.split("\n");
-  const result = [];
-  const headers = lines[0].split(",").map(val => val.trim().toLowerCase());
-
-  for (var i = 1; i < lines.length; i++) {
-    var obj = {};
-    var currentline = lines[i].split(",");
-
-    for (var j = 0; j < headers.length; j++) {
-      obj[headers[j]] = currentline[j];
-    }
-
-    result.push(obj);
+  if (lines.length > 0) {
+    const keys = lines
+      .shift()
+      .split(",")
+      .map(val => val.trim().toLowerCase());
+    const json = lines.map(values => {
+      const valuesList = values.split(",");
+      return valuesList.reduce((acc, curr, id) => {
+        return { ...acc, [keys[id]]: curr };
+      }, []);
+    });
+    return json;
   }
-  return result;
 };
 
 /*
@@ -43,5 +42,3 @@ export const mapBoxGeocoding = async (list = []) => {
   await load(list, 0);
   return list;
 };
-
-
