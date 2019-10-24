@@ -17,7 +17,8 @@ export const ICON = {
   C20.1,15.8,20.2,15.8,20.2,15.7z`,
   style: {
     fill: "#7ac1ff",
-    stroke: "none"
+    stroke: "none",
+    cursor: "pointer"
   }
 };
 

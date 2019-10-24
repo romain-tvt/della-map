@@ -33,8 +33,9 @@ export default function GeoMap({ data }) {
 
   return (
     <>
-      {data && (
+      {data && data.length > 0 && (
         <ReactMapGL
+          className="geoMap"
           mapboxApiAccessToken={MAPBOX_TOKEN}
           {...ref.viewport}
           onViewportChange={viewport => setRef({ viewport })}
@@ -42,7 +43,7 @@ export default function GeoMap({ data }) {
           {markers.map((data, id) => (
             <GeoMapMarker key={id} data={data} onClick={onMarkerClick} />
           ))}
-          {company && <GeoMapPanel company={company} onClick={onPanelClick}/>}
+          {company && <GeoMapPanel company={company} onClick={onPanelClick} />}
         </ReactMapGL>
       )}
     </>
